@@ -31,8 +31,7 @@ pkgs.callPackage ./nixGL.nix ({
   } // (if enableIntelX86Extensions then {}
   else {
     intel-media-driver = null;
-  }) // (if enable32bits then {}
-  else {
+  }) // (lib.optionalAttrs (!enable32bits) {
     pkgsi686Linux = null;
     driversi686Linux = null;
   })
